@@ -10,8 +10,8 @@ spe_chars = list(string.punctuation)
 chars = list()
 
 layout = [[sg.Text('¿Cuáles son los requisitos de la contraseña?')],
-		  [sg.Text('Nombre su contraseña:'), sg.InputText(key="nam")],
-		  [sg.Text('Tamaño de la contraseña:'), sg.InputText(key="len")],
+		  [sg.Text('Nombre su contraseña:'), sg.InputText(key="nam", size=10)],
+		  [sg.Text('Tamaño de la contraseña:'), sg.InputText(key="len", size=2)],
 		  [sg.Checkbox('¿Necesita minúsculas?', default=False, key="low")],
 		  [sg.Checkbox('¿Necesita mayúsculas?', default=False, key="upp")],
 		  [sg.Checkbox('¿Necesita números?', default=False, key="num")],
@@ -29,19 +29,19 @@ def generate_random_password():
 	
 	if values['low'] == True:
 		password.append(random.choice(low_letts))
-		if not string.ascii_lowercase in chars:
+		if not string.ascii_lowercase in chars: #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
 			chars.extend(string.ascii_lowercase)
 	if values['upp'] == True:
 		password.append(random.choice(upp_letts))
-		if not string.ascii_uppercase in chars:
-			chars.extend(string.ascii_uppercase)
+		if not string.ascii_uppercase in chars: #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
+			chars.extend(string.ascii_uppercase) 
 	if values['num'] == True:
 		password.append(random.choice(digits))
-		if not string.digits in chars:
+		if not string.digits in chars: #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
 			chars.extend(string.digits)
 	if values['spe'] == True:
 		password.append(random.choice(spe_chars))
-		if not string.punctuation in chars:
+		if not string.punctuation in chars: #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
 			chars.extend(string.punctuation)
 
 	if len(password) < length:

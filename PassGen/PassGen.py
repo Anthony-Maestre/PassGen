@@ -10,8 +10,8 @@ spe_chars = list(string.punctuation)
 chars = list()
 
 layout = [[sg.Text('¿Cuáles son los requisitos de la contraseña?')],
-		  [sg.Text('Nombre su contraseña:'), sg.InputText(key="nam", size=10)],
-		  [sg.Text('Tamaño de la contraseña:'), sg.InputText(key="len", size=2)],
+		  [sg.Text('Nombre su contraseña:'), sg.InputText(key="nam", size=(10,))],
+		  [sg.Text('Tamaño de la contraseña:'), sg.InputText(key="len", size=(2,))],
 		  [sg.Checkbox('¿Necesita minúsculas?', default=False, key="low")],
 		  [sg.Checkbox('¿Necesita mayúsculas?', default=False, key="upp")],
 		  [sg.Checkbox('¿Necesita números?', default=False, key="num")],

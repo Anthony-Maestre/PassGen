@@ -9,7 +9,8 @@ digits = list(string.digits)
 spe_chars = list(string.punctuation)
 chars = list()
 
-layout = [[sg.Text('¿Cuáles son los requisitos de la contraseña?')],
+#Obtenemos los parametros para la contraseña en esta interfaz
+layout = [[sg.Text('¿Cuáles son los requisitos de la contraseña?')], 
 		  [sg.Text('Nombre su contraseña:'), sg.InputText(key="nam", size=(10,))],
 		  [sg.Text('Tamaño de la contraseña:'), sg.InputText(key="len", size=(2,))],
 		  [sg.Checkbox('¿Necesita minúsculas?', default=False, key="low")],
@@ -22,6 +23,7 @@ window = sg.Window('Generador de contraseñas', layout)
 event, values = window.read()
 window.close()
 
+#Se genera la contraseña usando los parametros ya obtenidos
 def generate_random_password():
 	length = int(values['len'])
 
@@ -29,27 +31,27 @@ def generate_random_password():
 	
 	if values['low'] == True:
 		password.append(random.choice(low_letts))
-		if not string.ascii_lowercase in chars: #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
-			chars.extend(string.ascii_lowercase)
+		if not string.ascii_lowercase in chars: 
+			chars.extend(string.ascii_lowercase) #Se añadira dependiendo de lo especificado
 	if values['upp'] == True:
 		password.append(random.choice(upp_letts))
-		if not string.ascii_uppercase in chars: #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
-			chars.extend(string.ascii_uppercase) 
+		if not string.ascii_uppercase in chars: 
+			chars.extend(string.ascii_uppercase) #Se añadira dependiendo de lo especificado
 	if values['num'] == True:
 		password.append(random.choice(digits))
-		if not string.digits in chars: #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
-			chars.extend(string.digits)
+		if not string.digits in chars: 
+			chars.extend(string.digits) #Se añadira dependiendo de lo especificado
 	if values['spe'] == True:
 		password.append(random.choice(spe_chars))
-		if not string.punctuation in chars: #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
-			chars.extend(string.punctuation)
+		if not string.punctuation in chars: 
+			chars.extend(string.punctuation) #Se añadira dependiendo de lo especificado
 
-	if len(password) < length:
-		random.shuffle(chars)
+	if len(password) < length: #Aseguramos que la contraseña tenga el tamaño requerido
+		random.shuffle(chars) 
 		for i in range(length - len(password)):
-			password.append(random.choice(chars))
+			password.append(random.choice(chars)) #Se rellenaran los caracteres faltantes utilizando los requisitos ya especificados en la interfaz
 
-	random.shuffle(password)
+	random.shuffle(password) #Se revuelven los caracteres en la contraseña
 
 	f_pass = "".join(password)
 	pass_nam = values["nam"]

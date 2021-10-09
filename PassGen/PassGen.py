@@ -16,6 +16,6 @@ window = sg.Window('Generador de contraseñas', layout)
 event, values = window.read()
 window.close()
 
-generator.generate(event, values)
+pass = generator.generate(event, values)
 
-sg.popup(f'Su contraseña generada es: {f_pass}', button_type= 5)
+sg.popup(f'Su contraseña generada es: {pass}', button_type= 5)
